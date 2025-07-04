@@ -1,0 +1,7 @@
+{
+  "name": "rn-boilerplates",
+  "private": true,
+  "workspaces": [
+    "rn-expo/"
+  ]
+}

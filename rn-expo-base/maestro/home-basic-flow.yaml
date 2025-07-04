@@ -1,0 +1,7 @@
+appId: "host.exp.Exponent"
+---
+- launchApp
+- tapOn: "rn-expo-base"
+- assertVisible: "Home"
+- tapOn: "Show Details"
+- assertVisible: "Showing details for user Dan" 

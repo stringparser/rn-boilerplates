@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "rn-expo-base",
+    "slug": "rn-expo-base",
+    "version": "1.0.0",
+    "scheme": "rn-expo-base",
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./shared/assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "tsconfigPaths": true
+    },
+    "orientation": "portrait",
+    "icon": "./shared/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./shared/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.rnexpobase"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./shared/assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.anonymous.rnexpobase"
+    }
+  }
+}
