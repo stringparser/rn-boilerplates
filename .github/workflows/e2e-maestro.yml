@@ -1,0 +1,54 @@
+name: E2E Maestro Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  e2e:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: |
+          cd rn-expo-base
+          npm ci
+
+      - name: Install Expo CLI
+        run: npm install -g expo-cli
+
+      - name: Install Maestro CLI
+        run: |
+          curl -Ls https://get.maestro.mobile.dev | bash
+          export PATH="$PATH":"$HOME/.maestro/bin"
+          echo "$HOME/.maestro/bin" >> $GITHUB_PATH
+
+      - name: Verify Maestro installation
+        run: |
+          export PATH="$PATH":"$HOME/.maestro/bin"
+          maestro --version
+
+      - name: Start Expo in the background
+        run: |
+          cd rn-expo-base
+          nohup npx expo start --ios --non-interactive > expo.log 2>&1 &
+        shell: bash
+
+      - name: Wait for Expo to be ready
+        run: |
+          sleep 60  # Give Metro time to start. Adjust as needed.
+
+      - name: Run Maestro tests
+        run: |
+          export PATH="$PATH":"$HOME/.maestro/bin"
+          maestro test rn-expo-base/maestro/ 
